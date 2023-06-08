@@ -2,21 +2,26 @@ const express = require('express')
 const app = express()
 const PORT = 8000
 
-const rappers = {
-    '21 savage':{
-        'age': 29,
-        'birthName':'Shéyaa Bin Abraham-Joseph',
-        'birthLocation': 'London, England' 
+const fighters = {
+    'israel adesanya':{
+        'age': 33,
+        'nickName':'The Last Style Bender',
+        'fightingOutOf': 'Auckland, New Zealand' 
     },
-    'chance the rapper':{
-        'age': 29,
-        'birthName':'Chancelor Bennett',
-        'birthLocation': 'Chicago, Illinois' 
+    'kai kara-france':{
+        'age': 30,
+        'nickName':'Dont Blink',
+        'fightingOutOf': 'Auckland, New Zealand' 
     },
-    'dylan':{
-        'age': 29,
-        'birthName':'Dylan',
-        'birthLocation': 'Dylan' 
+    'jon jones':{
+        'age': 35,
+        'nickName':'Bones',
+        'fightingOutOf': 'Rochester, New York' 
+    },
+    'unknown':{
+        'age': 0,
+        'nickName':'unknown',
+        'fightingOutOf': 'unknown' 
     }
 }
 
@@ -24,15 +29,15 @@ app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
 
-app.get('/api/:rapperName', (request,response)=>{
-    const rappersName = request.params.rapperName.toLowerCase()
-    if(rappers[rappersName]){
-        response.json(rappers[rappersName])
+app.get('/api/:fighterName', (request,response)=>{
+    const fightersName = request.params.fighterName.toLowerCase()
+    if(fighters[fightersName]){
+        response.json(fighters[fightersName])
     }else{
-        response.json(rappers['dylan'])
+        response.json(fighters['unknown'])
     }
 })
 
 app.listen(PORT, ()=>{
-    console.log(`The server is running on port ${PORT}! You better go catch it!`)
+    console.log(`The server is running on port ${PORT}!`)
 })
